@@ -1,10 +1,13 @@
 const express = require('express');
 const app = express();
+const notebookRoutes = require('./api/routes/notebookRoutes');
 
 app.get('/', (req, res) => {
   res.json({
-    message: 'Hello from the index route!'
+    message: 'This is the index route!'
   });
 });
+
+app.use('/notebooks', notebookRoutes);
 
 module.exports = app;
