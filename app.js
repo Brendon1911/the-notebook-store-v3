@@ -4,12 +4,24 @@ const app = express();
 const notebookRoutes = require('./api/routes/notebookRoutes');
 const path = require('path');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const dbConfig = require('./config/db.config.js');
 
 // Parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // Parse requests of content-type - application/json
 app.use(bodyParser.json());
+
+// Connect to database
+mongoose.connect(dbConfig.url, { 
+  useNewUrlParser: true 
+}).then(() => {
+  console.log('Successfully connected to the database');
+}).catch(err => {
+  console.log('Could not connect to the database. Exiting now...', err);
+  process.exit();
+});
 
 // Use client files
 app.use(express.static(path.join(__dirname, '/client')));
