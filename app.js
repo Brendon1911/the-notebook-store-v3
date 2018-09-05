@@ -3,6 +3,13 @@ const express = require('express');
 const app = express();
 const notebookRoutes = require('./api/routes/notebookRoutes');
 const path = require('path');
+const bodyParser = require('body-parser');
+
+// Parse requests of content-type - application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: true }));
+
+// Parse requests of content-type - application/json
+app.use(bodyParser.json());
 
 // Use client files
 app.use(express.static(path.join(__dirname, '/client')));
