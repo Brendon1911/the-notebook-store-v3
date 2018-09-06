@@ -1,34 +1,20 @@
 const express = require('express');
+const notebook = require('../controllers/notebookController.js');
 const router = express.Router();
 
-router.get('/', (req, res, next) => {
-  res.json({
-    message: 'Show all notebooks'
-  }); 
-});
+// Retreive all notebooks
+router.get('/', notebook.findAll);
 
-router.post('/', (req, res, next) => {
-  res.json({
-    message: 'Add a notebook to all notebooks'
-  }); 
-});
+// Create a new notebook
+router.post('/', notebook.create);
 
-router.get('/:notebookId', (req, res, next) => {
-  res.json({
-    message: 'Show a single notebook'
-  }); 
-});
+// Retrieve a single notebook
+router.get('/:notebookId', notebook.findOne);
 
-router.patch('/:notebookId', (req, res, next) => {
-  res.json({
-    message: 'Update a single notebook'
-  }); 
-});
+// Update a notebook
+router.put('/:notebookId', notebook.update);
 
-router.delete('/:notebookId', (req, res, next) => {
-  res.json({
-    message: 'Delete a single notebook'
-  }); 
-});
+// Delete a notebook
+router.delete('/:notebookId', notebook.delete);
 
 module.exports = router;
