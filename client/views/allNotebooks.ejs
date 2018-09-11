@@ -1,29 +1,31 @@
 <% include ./partials/header.ejs %>
 
   <div class="ui link cards">
-    <div class="card">
-      <div class="image">
-        <img src="https://media.loot.co.za/static/gallery/previews/m/m/m/mmmj-5543-g480/preview.mmmj-5543-g480.0.photo.X3RY7HVND6.jpg">
-      </div>
-      <div class="content">
-        <a class="header">Asus VivoBook Max</a>
-        <div class="meta">
-          <a>15.6"</a>
+    <% for (let i = 0; i < notebooks.length; i++) { %>
+      <div class="card">
+        <div class="image">
+          <img src="<%= notebooks[i].image %>">
         </div>
-        <div class="description">
-          In Stock: 5
+        <div class="content">
+          <a class="header"><%= notebooks[i].make %> <%= notebooks[i].model %></a>
+          <div class="meta">
+            <a><%= notebooks[i].screenSize %></a>
+          </div>
+          <div class="description">
+            In Stock: <%= notebooks[i].availability %>
+          </div>
+        </div>
+        <div class="extra content">
+          <span class="right floated">
+            <a class="ui green button">Add to cart</a>
+          </span>
+          <span>
+            <i class="tag icon"></i>
+            R <%= notebooks[i].price %>
+          </span>
         </div>
       </div>
-      <div class="extra content">
-        <span class="right floated">
-          <a class="ui green button">Add to cart</a>
-        </span>
-        <span>
-          <i class="tag icon"></i>
-          R 3799
-        </span>
-      </div>
-    </div>
+    <% } %>
   </div>
   
 <% include ./partials/footer.ejs %>

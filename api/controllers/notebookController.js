@@ -3,8 +3,15 @@ const Notebook = require('../models/notebookModel');
 // Retrieve and return all notebooks from the database
 exports.findAll = (req, res) => {
   // Retrieve and display all notebooks from database
-  res.render('allNotebooks', {
-    title: 'All Notebooks'
+  Notebook.find((err, notebooks) => {
+    if (err) {
+      console.log(err);
+    } else {
+      res.render('allNotebooks', {
+        title: 'All Notebooks',
+        notebooks: notebooks
+      });
+    }
   });
   
   // Notebook.find()
