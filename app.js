@@ -4,7 +4,7 @@ const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
-const dbConfig = require('./config/db.config.js');
+const dbConfig = require('./config/db.config');
 
 // Require routes
 const indexRoute = require("./api/routes/indexRoute");
