@@ -1,11 +1,14 @@
 // Requirements
 const express = require('express');
 const app = express();
-const notebookRoutes = require('./api/routes/notebookRoutes');
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const dbConfig = require('./config/db.config.js');
+
+// Require routes
+const indexRoute = require("./api/routes/indexRoute");
+const notebookRoutes = require('./api/routes/notebookRoutes');
 
 // Parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -44,11 +47,7 @@ app.set('views', './client/views');
 // Set view engine
 app.set('view engine', 'ejs');
 
-app.get('/', (req, res, next) => {
-  res.render('index', { 
-    title: 'Index page'
-  });
-});
+app.use('/', indexRoute);
 
 app.use('/notebooks', notebookRoutes);
 

@@ -4,8 +4,8 @@ const Notebook = require('../models/notebookModel');
 exports.findAll = (req, res) => {
   // Retrieve and return all notebooks from database
   Notebook.find()
-  .then(notes => {
-    res.send(notes);
+  .then(notebooks => {
+    res.send(notebooks);
   }).catch(err => {
     res.status(500).send({
       message: err.message || 'An error occured while retrieving the notebooks'
