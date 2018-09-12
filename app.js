@@ -1,6 +1,5 @@
 // Requirements
 const express = require('express');
-const app = express();
 const path = require('path');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -9,6 +8,9 @@ const dbConfig = require('./config/db.config');
 // Require routes
 const indexRoute = require("./api/routes/indexRoute");
 const notebookRoutes = require('./api/routes/notebookRoutes');
+const userRoutes = require('./api/routes/userRoutes');
+
+const app = express();
 
 // Parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -50,5 +52,7 @@ app.set('view engine', 'ejs');
 app.use('/', indexRoute);
 
 app.use('/notebooks', notebookRoutes);
+
+app.use('/signup', userRoutes);
 
 module.exports = app;
